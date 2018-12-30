@@ -88,7 +88,7 @@
 <meta property="og:description" content="###let run also with apply takeIf使用 letlet对对象T的扩展 ，接收的是T类型，返回的是R类型 。  有自己的作用域 作用域中的接收者是it 返回值，返回最后一个对象  12345 val result =&amp;quot;Hello World&amp;quot;.let &amp;#123;        println(it)        &amp;quot;Hello&amp;quot;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ww2.sinaimg.cn/large/006tKfTcly1fpeh8eb52wj31ee0kitb9.jpg">
-<meta property="og:updated_time" content="2018-12-30T14:30:12.000Z">
+<meta property="og:updated_time" content="2018-12-30T14:34:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin 常用扩展函数">
 <meta name="twitter:description" content="###let run also with apply takeIf使用 letlet对对象T的扩展 ，接收的是T类型，返回的是R类型 。  有自己的作用域 作用域中的接收者是it 返回值，返回最后一个对象  12345 val result =&amp;quot;Hello World&amp;quot;.let &amp;#123;        println(it)        &amp;quot;Hello&amp;quot;">
@@ -353,8 +353,7 @@
 <p>他的返回值是这个作用域的最后一个对象，上面的代码的话就会更简洁一些。而不是调用两次</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stringVariable?.run &#123;</span><br><span class="line">    println(&quot;字符串的长度为$length&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stringVariable?.let &#123; </span><br><span class="line">    println(&quot;字符串的长度为 $&#123;it.length&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>和let的区别<br>能够为it重新命名。run不能够重新命名，如果我们不想覆盖外部作用域的this，这时候去使用T.let会更加的方便</p>
-<p>####also</p>
-<ul>
+<h4 id="also"><a href="#also" class="headerlink" title="also"></a>also</h4><ul>
 <li>有自己的作用域</li>
 <li>作用域中的接收者 it</li>
 <li>返回值都是原来的对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val original = &quot;abc&quot;</span><br><span class="line">original.also &#123;</span><br><span class="line">    println(&quot;The original String is $it&quot;) // &quot;abc&quot;</span><br><span class="line">    it.reversed() </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The reverse String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">    it.length  </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The length of the String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -362,8 +361,7 @@
 </ul>
 <p>T.also不管调用多少次返回的都是原来的original对象<br>对于T.let和T.also都能够进行链式操作，那么我们现在结合一下T.let和T.also的链式调用来看一下在实际场景中的应用。<br>//原始函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun makeDir(path: String): File  &#123;</span><br><span class="line">    val result = File(path)</span><br><span class="line">    result.mkdirs()</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过let和also的链式调用改进后的函数</span><br><span class="line">fun makeDir(path: String) = path.let&#123; File(it) &#125;.also&#123; it.mkdirs() &#125;</span><br></pre></td></tr></table></figure>
-<p>####apply</p>
-<ul>
+<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><ul>
 <li>有自己的作用域</li>
 <li>作用域中的接收者 this</li>
 <li>返回值都是原来的对象</li>
@@ -497,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -552,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number">1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#run"><span class="nav-number">2.</span> <span class="nav-text">run</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with"><span class="nav-number">3.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeIf"><span class="nav-number">4.</span> <span class="nav-text">takeIf</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number">1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#run"><span class="nav-number">2.</span> <span class="nav-text">run</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#also"><span class="nav-number">3.</span> <span class="nav-text">also</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#apply"><span class="nav-number">4.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with"><span class="nav-number">5.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#takeIf"><span class="nav-number">6.</span> <span class="nav-text">takeIf</span></a></li></ol></div>
             
 
           </div>

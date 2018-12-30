@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="zhangguobao,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="leo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList 与 java.util.ArrayList 的类型映射。 这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.Arr">
+<meta name="keywords" content="zhangguobao">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kotlin 集合的扩展函数">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/总数操作/index.html">
 <meta property="og:site_name" content="leo">
+<meta property="og:description" content="Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList 与 java.util.ArrayList 的类型映射。 这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.Arr">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-30T14:36:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leo">
+<meta name="twitter:title" content="kotlin 集合的扩展函数">
+<meta name="twitter:description" content="Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList 与 java.util.ArrayList 的类型映射。 这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.Arr">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/总数操作/">
 
 
 
 
 
-  <title>leo</title>
+  <title>kotlin 集合的扩展函数 | leo</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -214,364 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/let run also with apply takeIf使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="guobao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/let run also with apply takeIf使用/" itemprop="url">Kotlin 常用扩展函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T18:04:51+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###let run also with apply takeIf使用</p>
-<h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><p>let对对象T的扩展 ，接收的是T类型，返回的是R类型 。</p>
-<ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者是it</li>
-<li>返回值，返回最后一个对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> val result =&quot;Hello World&quot;.let &#123;</span><br><span class="line">        println(it)</span><br><span class="line">        &quot;Hello&quot;</span><br><span class="line">    &#125;</span><br><span class="line">println(result)</span><br></pre></td></tr></table></figure>
-<p>输出结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out: Hello World</span><br><span class="line">System.out: Hello</span><br></pre></td></tr></table></figure>
-<p>使用?.let进行判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private fun getInfo(jsonObject: JSONObject?): Info? &#123;</span><br><span class="line">    return jsonObject?.let &#123;</span><br><span class="line">        val uri = it.optString(&quot;uri&quot;)</span><br><span class="line">        val length = it.optString(&quot;length&quot;)</span><br><span class="line">        Info(uri, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样写和用if判空的写法没有区别，实际上根据这段代码编译出的字节码反编译得到的java代码就是if…else…形式的。</p>
-<p>在多重判断的时候使用，代码看起来更简洁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// if...else...写法</span><br><span class="line">private fun testIfElse(): Any? &#123;</span><br><span class="line">        return if (a !== null) &#123;</span><br><span class="line">            val b = handleA(a)</span><br><span class="line">            if (b !== null) &#123;</span><br><span class="line">                handleB(b)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                null</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            null</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">// ?.let写法</span><br><span class="line">private fun testLet(): Any? &#123;</span><br><span class="line">        return a?.let &#123; handleA(it) &#125;?.let &#123; handleB(it) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>let同时多重判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	    a?.let&#123;</span><br><span class="line">		    b?.let&#123;</span><br><span class="line">			    // code</span><br><span class="line">		    &#125;</span><br><span class="line">	    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	safeLet(a,b)&#123;a,b -&gt;</span><br><span class="line">			// code </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#####注意<br>let在括号里是可以进行重新命名的，但是箭头后面不能加大括号。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt;</span><br><span class="line">		// code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 错误</span><br><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt; &#123;</span><br><span class="line">		// code</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者是this</li>
-<li>返回值，返回最后一个对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">fun scope()&#123;</span><br><span class="line">    var animal = &quot;cat&quot;</span><br><span class="line">    run &#123;</span><br><span class="line">        val animal = &quot;dog&quot;</span><br><span class="line">        println(animal)   // dog</span><br><span class="line">    &#125;</span><br><span class="line">    println(animal)       //cat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>run拥有一个单独的作用域,能够重新定义一个animal变量，并且它的作用域只存在于run函数当中。看起来好像没什么用处</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run &#123;</span><br><span class="line">    if (islogin) loginDialog else getAwardDialog</span><br><span class="line">&#125;.show()</span><br></pre></td></tr></table></figure>
-<p>他的返回值是这个作用域的最后一个对象，上面的代码的话就会更简洁一些。而不是调用两次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stringVariable?.run &#123;</span><br><span class="line">    println(&quot;字符串的长度为$length&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stringVariable?.let &#123; </span><br><span class="line">    println(&quot;字符串的长度为 $&#123;it.length&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>和let的区别<br>能够为it重新命名。run不能够重新命名，如果我们不想覆盖外部作用域的this，这时候去使用T.let会更加的方便</p>
-<h4 id="also"><a href="#also" class="headerlink" title="also"></a>also</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者 it</li>
-<li>返回值都是原来的对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val original = &quot;abc&quot;</span><br><span class="line">original.also &#123;</span><br><span class="line">    println(&quot;The original String is $it&quot;) // &quot;abc&quot;</span><br><span class="line">    it.reversed() </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The reverse String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">    it.length  </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The length of the String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>T.also不管调用多少次返回的都是原来的original对象<br>对于T.let和T.also都能够进行链式操作，那么我们现在结合一下T.let和T.also的链式调用来看一下在实际场景中的应用。<br>//原始函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun makeDir(path: String): File  &#123;</span><br><span class="line">    val result = File(path)</span><br><span class="line">    result.mkdirs()</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过let和also的链式调用改进后的函数</span><br><span class="line">fun makeDir(path: String) = path.let&#123; File(it) &#125;.also&#123; it.mkdirs() &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者 this</li>
-<li>返回值都是原来的对象</li>
-</ul>
-<p>apply 和also的区别相当于 let 和run 的区别。一个接收this ，另一个是接收it 。同样的情况，also 是用重新命名。apply则不行。是链式结构创建一个Intent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 普通创建Intent方法</span><br><span class="line">fun createIntent(intentData: String, intentAction: String): Intent &#123;</span><br><span class="line">    val intent = Intent()</span><br><span class="line">    intent.action = intentAction</span><br><span class="line">    intent.data=Uri.parse(intentData)</span><br><span class="line">    return intent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 通过apply函数的链式调用创建Intent</span><br><span class="line">fun createIntent(intentData: String, intentAction: String) =</span><br><span class="line">        Intent().apply &#123; action = intentAction &#125;</span><br><span class="line">                .apply &#123; data = Uri.parse(intentData) &#125;</span><br></pre></td></tr></table></figure>
-<p>使用于建造者模式，apply则更经常使用。或者对同一对象多次操作，则apply 显现的代码更加的简洁。返回的是对象本身</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return TextView(context).apply &#123;</span><br><span class="line">    text = &quot;test&quot;</span><br><span class="line">    setOnClickListener(onClickListener)</span><br><span class="line">    // 更多对TextView的操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p>与run的方法类似 ，with(T)函数，而另一个则是使用了T.run函数。<br>with是传参进行处理。对于没什么判断的操作的时候使用情况都差不多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">with(webView.settings)&#123;</span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.settings.run &#123; </span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>假设一种场景，那就是webView.settings可能为null。那我们就来再次看一下下面这段代码.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">with(webView.settings)&#123;</span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.settings?.run &#123; </span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>很明显run方法更好，可以在函数使用之前进行判断</p>
-<h4 id="takeIf"><a href="#takeIf" class="headerlink" title="takeIf"></a>takeIf</h4><p>增加了判断，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">File(url).takeIf &#123; it.exists() &#125;</span><br><span class="line">        ?.let &#123;</span><br><span class="line">            JSONObject(NetworkUtils.postFile(SERVER_URL, url))</span><br><span class="line">        &#125;?.takeIf &#123; it.optString(&quot;message&quot;) == &quot;success&quot; &#125;</span><br><span class="line">        ?.let &#123;</span><br><span class="line">            post(it.optString(&quot;result&quot;))</span><br><span class="line">        &#125; ?: mHandler.post &#123; view?.onFail() &#125;</span><br></pre></td></tr></table></figure>
-<p>takeIf 操作最后对象为Boolean ,当值是false时，则返回null ,返回值为true 则返回自身</p>
-<p>在这里我们通过一个树状图来看一下对着五个标准函数的区别，使用以及如何选取标准函数</p>
-<p><img src="https://ww2.sinaimg.cn/large/006tKfTcly1fpeh8eb52wj31ee0kitb9.jpg" alt="enter image description here"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/ConstriantLayout/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="guobao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/30/ConstriantLayout/" itemprop="url">ConstraintLayout基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-30T18:04:51+08:00">
-                2018-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/布局/" itemprop="url" rel="index">
-                    <span itemprop="name">布局</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="ConstriantLayout"><a href="#ConstriantLayout" class="headerlink" title="ConstriantLayout"></a>ConstriantLayout</h1><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么?"></a>是什么?</h3><p>ConstraintLayout，中文称约束布局，在2016年Google I/O大会时提出，2017年2月发布正式版，目前稳定版本为1.0.2。约束布局作为Google今后主推的布局样式，可以完全替代其他布局，降低页面布局层级，提升页面渲染性能。</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>ConstraintLayout支持最低Android Studio版本是2.2，但是有些属性在2.2的布局编辑器上不支持编辑，如比例和baseline等约束。所以推荐使用2.3的版本，当然3.0的版本那就更好了。要使用ConstraintLayout，需要在项目中进行如下配置：<br>升级新版本的Android Studio 会默认添加这些依赖</p>
-<p>Maven 依赖</p>
-<pre><code>implementation &apos;com.android.support.constraint:constraint-layout:1.1.2&apos;
-</code></pre><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>高级版RelativeLayout</li>
-<li>极大减少布局的嵌套，提高xml加载速度</li>
-<li>编写方式相对自由，可以实现各种复杂的样式</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>大量增加xml行数</li>
-<li>需要定义大量的<code>id</code></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/30/ConstriantLayout/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -601,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/30/总数操作/" itemprop="url">kotlin 集合的扩展函数</a></h1>
+          <h1 class="post-title" itemprop="name headline">kotlin 集合的扩展函数</h1>
         
 
         <div class="post-meta">
@@ -675,9 +322,7 @@
       
 
       
-        
-          
-            <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
+        <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
 <p>这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.ArrayList，通过 Java 代码调用 kotlin.collections.ArrayList 对象，会被自动转换为 java.util.ArrayList；而且所有 Java 中的 java.util.ArrayList 在 Kotlin 代码中都可以通过 kotlin.collections.ArrayList 调用。</p>
 <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
 <p>Kotlin 原生支持大量操作符<br>Arrays.asList(array)  listof 底层</p>
@@ -783,8 +428,6 @@
 <p>返回一个根据指定函数降序排序后的list。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 5, 7, 3), unsortedList.sortDescendingBy &#123; it % 3 &#125;)</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -799,14 +442,36 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/zhangguobao/" rel="tag"># zhangguobao</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/30/ConstriantLayout/" rel="prev" title="ConstraintLayout基础">
+                ConstraintLayout基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -816,10 +481,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -827,6 +493,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -847,8 +517,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -908,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤操作符"><span class="nav-number">1.</span> <span class="nav-text">过滤操作符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1041,6 +736,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
