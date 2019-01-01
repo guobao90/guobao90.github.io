@@ -338,7 +338,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// if...else...写法</span><br><span class="line">private fun testIfElse(): Any? &#123;</span><br><span class="line">        return if (a !== null) &#123;</span><br><span class="line">            val b = handleA(a)</span><br><span class="line">            if (b !== null) &#123;</span><br><span class="line">                handleB(b)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                null</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            null</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">// ?.let写法</span><br><span class="line">private fun testLet(): Any? &#123;</span><br><span class="line">        return a?.let &#123; handleA(it) &#125;?.let &#123; handleB(it) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>let同时多重判断</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	    a?.let&#123;</span><br><span class="line">		    b?.let&#123;</span><br><span class="line">			    // code</span><br><span class="line">		    &#125;</span><br><span class="line">	    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	safeLet(a,b)&#123;a,b -&gt;</span><br><span class="line">			// code </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#####注意<br>let在括号里是可以进行重新命名的，但是箭头后面不能加大括号。如下</p>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>let在括号里是可以进行重新命名的，但是箭头后面不能加大括号。如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt;</span><br><span class="line">		// code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 错误</span><br><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt; &#123;</span><br><span class="line">		// code</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><ul>
 <li>有自己的作用域</li>
@@ -817,6 +817,174 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/30/产品介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guobao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/30/产品介绍/" itemprop="url">魔图的产品介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-30T20:03:00+08:00">
+                2017-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/魔图/" itemprop="url" rel="index">
+                    <span itemprop="name">魔图</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h4><p>基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。</p>
+<h4 id="基础类的构建"><a href="#基础类的构建" class="headerlink" title="基础类的构建"></a>基础类的构建</h4><ol>
+<li>基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标</li>
+<li>选中车型的类，保存选中车型的数据状态</li>
+<li>数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据</li>
+</ol>
+<h5 id="事件处理类"><a href="#事件处理类" class="headerlink" title="事件处理类"></a>事件处理类</h5><ol>
+<li>点击事件，滑动，放大，双击</li>
+<li>缩放 使用Android系统提供的ScaleGestureDetector</li>
+<li>手势识别 GestureDetectorCompat  通过这个类可以识别很多手势</li>
+<li>滑动，方法都是通过手势产生的偏移对画布进行重新设置。滑动需要判断是否操作最大画布的边距。</li>
+<li>fling 惯性 ScrollerCompat 26.1.0 废弃了使用 OverScroller</li>
+<li>点击 通过手势的识别</li>
+</ol>
+<h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><ol>
+<li>圆圈放大的倍率计算分成了几部分处理。</li>
+<li>车型展示的圆圈大小进行分级。便于显示管理处置。 对所有的圆的类型根据等级分成9级，按照2的倍数，排序圆圈</li>
+</ol>
+<h4 id="代码构建"><a href="#代码构建" class="headerlink" title="代码构建"></a>代码构建</h4><p><img src="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788" alt="d8f64ebb0799e21afcf2e6b128463509.png"><br>代码的分层框架</p>
+<h5 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h5><p>因为魔图有三个状态，需要创建三个不同的对象去承载这些业务逻辑。初始化即Normal 状态 ，点击状态Touch ,还有竞争状态 Compare。这三个状态多具有相同的一些属性，但是也都有不同的部分。所以通过继承相同的基类，在不同的子类修改了部分属性从而使得它们可以呈现不同的状态。即用一个接口BaseCase对于这一类的Case归类，打上标签与其他的进行区分。然后根据传进来的type 进行区分。主要的方法是onDraw() 和onTouch() 。我们又希望在使用这些对象，不需要知道这些对象具体的名字，只需要知道表示该对象的一个参数，就可以获取该对象。所以这里就采用工厂模式进行重构。</p>
+<pre><code>1. 将关注点进行分离,对责任进行分割，调用者无需知道类名 。提高系统的灵活性，对于后期代码的增删也比较的方便。
+2. 统一的基类进行约束，实现多态。协议类，统一管理回调
+</code></pre><h4 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h4><ol>
+<li>完全超出屏幕外部的圆不进行绘制，尤其在绘制对比类型的时候，连接线是虚线的状态。会造成严重的卡顿。绘制虚线需要关闭android 的硬件加速的功能。而且当初画布会放的非常大，就会造成各个方向的连线特别的长。因此对于超出屏幕外部的不进行绘制是极有必要的。</li>
+<li>不在循环绘制的过程里创建新的对象，否则对象不断的创建，不断的释放，会造成内存极大的抖动</li>
+<li>数据转换过程。在绘制前先处理好。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -863,7 +1031,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -874,7 +1042,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -922,7 +1090,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="zhangguobao,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="产品介绍基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。 基础类的构建 基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标 选中车型的类，保存选中车型的数据状态 数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据  事件处理类 点击事件，">
+<meta name="keywords" content="zhangguobao">
+<meta property="og:type" content="article">
+<meta property="og:title" content="魔图的产品介绍">
+<meta property="og:url" content="http://yoursite.com/2017/11/30/产品介绍/index.html">
+<meta property="og:site_name" content="leo">
+<meta property="og:description" content="产品介绍基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。 基础类的构建 基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标 选中车型的类，保存选中车型的数据状态 数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据  事件处理类 点击事件，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788">
+<meta property="og:updated_time" content="2019-01-01T05:39:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="魔图的产品介绍">
+<meta name="twitter:description" content="产品介绍基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。 基础类的构建 基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标 选中车型的类，保存选中车型的数据状态 数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据  事件处理类 点击事件，">
+<meta name="twitter:image" content="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/30/产品介绍/">
+
+
+
+
+
+  <title>魔图的产品介绍 | leo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">leo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/30/产品介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guobao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">魔图的产品介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-30T20:03:00+08:00">
+                2017-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/魔图/" itemprop="url" rel="index">
+                    <span itemprop="name">魔图</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h4><p>基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。</p>
+<h4 id="基础类的构建"><a href="#基础类的构建" class="headerlink" title="基础类的构建"></a>基础类的构建</h4><ol>
+<li>基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标</li>
+<li>选中车型的类，保存选中车型的数据状态</li>
+<li>数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据</li>
+</ol>
+<h5 id="事件处理类"><a href="#事件处理类" class="headerlink" title="事件处理类"></a>事件处理类</h5><ol>
+<li>点击事件，滑动，放大，双击</li>
+<li>缩放 使用Android系统提供的ScaleGestureDetector</li>
+<li>手势识别 GestureDetectorCompat  通过这个类可以识别很多手势</li>
+<li>滑动，方法都是通过手势产生的偏移对画布进行重新设置。滑动需要判断是否操作最大画布的边距。</li>
+<li>fling 惯性 ScrollerCompat 26.1.0 废弃了使用 OverScroller</li>
+<li>点击 通过手势的识别</li>
+</ol>
+<h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><ol>
+<li>圆圈放大的倍率计算分成了几部分处理。</li>
+<li>车型展示的圆圈大小进行分级。便于显示管理处置。 对所有的圆的类型根据等级分成9级，按照2的倍数，排序圆圈</li>
+</ol>
+<h4 id="代码构建"><a href="#代码构建" class="headerlink" title="代码构建"></a>代码构建</h4><p><img src="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788" alt="d8f64ebb0799e21afcf2e6b128463509.png"><br>代码的分层框架</p>
+<h5 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h5><p>因为魔图有三个状态，需要创建三个不同的对象去承载这些业务逻辑。初始化即Normal 状态 ，点击状态Touch ,还有竞争状态 Compare。这三个状态多具有相同的一些属性，但是也都有不同的部分。所以通过继承相同的基类，在不同的子类修改了部分属性从而使得它们可以呈现不同的状态。即用一个接口BaseCase对于这一类的Case归类，打上标签与其他的进行区分。然后根据传进来的type 进行区分。主要的方法是onDraw() 和onTouch() 。我们又希望在使用这些对象，不需要知道这些对象具体的名字，只需要知道表示该对象的一个参数，就可以获取该对象。所以这里就采用工厂模式进行重构。</p>
+<pre><code>1. 将关注点进行分离,对责任进行分割，调用者无需知道类名 。提高系统的灵活性，对于后期代码的增删也比较的方便。
+2. 统一的基类进行约束，实现多态。协议类，统一管理回调
+</code></pre><h4 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h4><ol>
+<li>完全超出屏幕外部的圆不进行绘制，尤其在绘制对比类型的时候，连接线是虚线的状态。会造成严重的卡顿。绘制虚线需要关闭android 的硬件加速的功能。而且当初画布会放的非常大，就会造成各个方向的连线特别的长。因此对于超出屏幕外部的不进行绘制是极有必要的。</li>
+<li>不在循环绘制的过程里创建新的对象，否则对象不断的创建，不断的释放，会造成内存极大的抖动</li>
+<li>数据转换过程。在绘制前先处理好。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zhangguobao/" rel="tag"># zhangguobao</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/30/总数操作/" rel="prev" title="kotlin 集合的扩展函数">
+                kotlin 集合的扩展函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">guobao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#产品介绍"><span class="nav-number">1.</span> <span class="nav-text">产品介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础类的构建"><span class="nav-number">2.</span> <span class="nav-text">基础类的构建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事件处理类"><span class="nav-number">2.1.</span> <span class="nav-text">事件处理类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据处理"><span class="nav-number">3.</span> <span class="nav-text">数据处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码构建"><span class="nav-number">4.</span> <span class="nav-text">代码构建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模式"><span class="nav-number">4.1.</span> <span class="nav-text">模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升性能"><span class="nav-number">5.</span> <span class="nav-text">提升性能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guobao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
