@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="leo">
 <meta property="og:description" content="Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList 与 java.util.ArrayList 的类型映射。 这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.Arr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-30T14:36:10.000Z">
+<meta property="og:updated_time" content="2019-01-02T16:00:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kotlin 集合的扩展函数">
 <meta name="twitter:description" content="Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList 与 java.util.ArrayList 的类型映射。 这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.Arr">
@@ -342,6 +342,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// The element whose negative is greater</span><br><span class="line">assertEquals(1, list.maxBy &#123; -it &#125;)</span><br></pre></td></tr></table></figure>
 <p>min<br>返回最小的一项，如果没有则返回null。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(1, list.min())</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>minBy<br>根据给定的函数返回最小的一项，如果没有则返回null。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// The element whose negative is smaller</span><br><span class="line">assertEquals(6, list.minBy &#123; -it &#125;)</span><br></pre></td></tr></table></figure></p>
 <p>none<br>如果没有任何元素与给定的函数匹配，则返回true。<br>/</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ No elements are divisible by 7</span><br><span class="line">assertTrue(list.none &#123; it % 7 == 0 &#125;)</span><br></pre></td></tr></table></figure>

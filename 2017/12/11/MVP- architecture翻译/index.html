@@ -88,7 +88,7 @@
 <meta property="og:description" content="MVP- architecture翻译 原文地址 ：https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/翻译 ： leo  总结MVP clean architecture 是基于Clean Architecture.的准则的观点 基于MVP sample。添加了 domain layer 介于 pre">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/googlesamples/android-architecture/wiki/images/mvp-clean.png">
-<meta property="og:updated_time" content="2019-01-01T06:48:58.000Z">
+<meta property="og:updated_time" content="2019-01-02T15:59:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVP- architecture翻译">
 <meta name="twitter:description" content="MVP- architecture翻译 原文地址 ：https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/翻译 ： leo  总结MVP clean architecture 是基于Clean Architecture.的准则的观点 基于MVP sample。添加了 domain layer 介于 pre">
@@ -335,6 +335,7 @@
 <li><strong>Domain </strong>: 处理所有的业务逻辑，<strong>注意是所有的业务逻辑</strong>。domain层是以presentation layer 层的use cases 或者 interactors 开始的。</li>
 <li><strong>Repository</strong>: 获取数据，以及数据的存储</li>
 </ul>
+<a id="more"></a>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>mvp-clean 和 基本的mvp 最大的区别就是在domain层和use cases 的使用上。从 presenters 层分离出domain 层好处是可以减少代码的冗余（例<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/filter" target="_blank" rel="noopener">Task filters</a>.<br><strong>Use case</strong> 定义了 app 所需的操作。这增加了 可阅读性，因为类的名称使目的更加的明显。（例<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/usecase" target="_blank" rel="noopener">tasks/domain/usecase/</a>）</p>
 <p><strong>Use case</strong> 的好处是在domain的代码层上可以复用。<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/usecase/CompleteTask.java" target="_blank" rel="noopener">CompleteTask</a>在<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/taskdetail/TaskDetailPresenter.java" target="_blank" rel="noopener">TaskDetailPresenter</a>和<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksPresenter.java" target="_blank" rel="noopener">TasksPresenter</a>做到了很好的复用。<br>use cases 是使用<a href="http://www.oodesign.com/command-pattern.html" target="_blank" rel="noopener">command pattern</a>在后台完成操作的。domain layer 是完全解耦与Android 层和第三方依赖的。是一个纯java层的处理</p>
 <h2 id="Issues-notes"><a href="#Issues-notes" class="headerlink" title="Issues/notes"></a>Issues/notes</h2><p><strong>Use cases</strong> 从主线程剥离出来，对于Android app是个好的操作。这种操作是尽可能的减少占用UI 线程。我们决定使用 command pattern 将use case 在线程池里执行操作。同样的我们可以用RxJava 或者 Promises实现同样的功能。</p>

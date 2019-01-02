@@ -321,8 +321,7 @@
 
       
         
-          
-            <h3 id="let-run-also-with-apply-takeIf使用"><a href="#let-run-also-with-apply-takeIf使用" class="headerlink" title="let run also with apply takeIf使用"></a>let run also with apply takeIf使用</h3><h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><p>let对对象T的扩展 ，接收的是T类型，返回的是R类型 。</p>
+          <h3 id="let-run-also-with-apply-takeIf使用"><a href="#let-run-also-with-apply-takeIf使用" class="headerlink" title="let run also with apply takeIf使用"></a>let run also with apply takeIf使用</h3><h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><p>let对对象T的扩展 ，接收的是T类型，返回的是R类型 。</p>
 <ul>
 <li>有自己的作用域</li>
 <li>作用域中的接收者是it</li>
@@ -333,52 +332,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out: Hello World</span><br><span class="line">System.out: Hello</span><br></pre></td></tr></table></figure>
 <p>使用?.let进行判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private fun getInfo(jsonObject: JSONObject?): Info? &#123;</span><br><span class="line">    return jsonObject?.let &#123;</span><br><span class="line">        val uri = it.optString(&quot;uri&quot;)</span><br><span class="line">        val length = it.optString(&quot;length&quot;)</span><br><span class="line">        Info(uri, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样写和用if判空的写法没有区别，实际上根据这段代码编译出的字节码反编译得到的java代码就是if…else…形式的。</p>
-<p>在多重判断的时候使用，代码看起来更简洁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// if...else...写法</span><br><span class="line">private fun testIfElse(): Any? &#123;</span><br><span class="line">        return if (a !== null) &#123;</span><br><span class="line">            val b = handleA(a)</span><br><span class="line">            if (b !== null) &#123;</span><br><span class="line">                handleB(b)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                null</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            null</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">// ?.let写法</span><br><span class="line">private fun testLet(): Any? &#123;</span><br><span class="line">        return a?.let &#123; handleA(it) &#125;?.let &#123; handleB(it) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>let同时多重判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	    a?.let&#123;</span><br><span class="line">		    b?.let&#123;</span><br><span class="line">			    // code</span><br><span class="line">		    &#125;</span><br><span class="line">	    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">private fun multiJudge(a:String?,b:String?)&#123;</span><br><span class="line">	safeLet(a,b)&#123;a,b -&gt;</span><br><span class="line">			// code </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>let在括号里是可以进行重新命名的，但是箭头后面不能加大括号。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt;</span><br><span class="line">		// code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 错误</span><br><span class="line">fun letTest(a:String?)&#123;</span><br><span class="line">	a?.let&#123; renameA -&gt; &#123;</span><br><span class="line">		// code</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者是this</li>
-<li>返回值，返回最后一个对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">fun scope()&#123;</span><br><span class="line">    var animal = &quot;cat&quot;</span><br><span class="line">    run &#123;</span><br><span class="line">        val animal = &quot;dog&quot;</span><br><span class="line">        println(animal)   // dog</span><br><span class="line">    &#125;</span><br><span class="line">    println(animal)       //cat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>run拥有一个单独的作用域,能够重新定义一个animal变量，并且它的作用域只存在于run函数当中。看起来好像没什么用处</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run &#123;</span><br><span class="line">    if (islogin) loginDialog else getAwardDialog</span><br><span class="line">&#125;.show()</span><br></pre></td></tr></table></figure>
-<p>他的返回值是这个作用域的最后一个对象，上面的代码的话就会更简洁一些。而不是调用两次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stringVariable?.run &#123;</span><br><span class="line">    println(&quot;字符串的长度为$length&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stringVariable?.let &#123; </span><br><span class="line">    println(&quot;字符串的长度为 $&#123;it.length&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>和let的区别<br>能够为it重新命名。run不能够重新命名，如果我们不想覆盖外部作用域的this，这时候去使用T.let会更加的方便</p>
-<h4 id="also"><a href="#also" class="headerlink" title="also"></a>also</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者 it</li>
-<li>返回值都是原来的对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val original = &quot;abc&quot;</span><br><span class="line">original.also &#123;</span><br><span class="line">    println(&quot;The original String is $it&quot;) // &quot;abc&quot;</span><br><span class="line">    it.reversed() </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The reverse String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">    it.length  </span><br><span class="line">&#125;.also &#123;</span><br><span class="line">    println(&quot;The length of the String is $&#123;it&#125;&quot;) // &quot;abc&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>T.also不管调用多少次返回的都是原来的original对象<br>对于T.let和T.also都能够进行链式操作，那么我们现在结合一下T.let和T.also的链式调用来看一下在实际场景中的应用。<br>//原始函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun makeDir(path: String): File  &#123;</span><br><span class="line">    val result = File(path)</span><br><span class="line">    result.mkdirs()</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过let和also的链式调用改进后的函数</span><br><span class="line">fun makeDir(path: String) = path.let&#123; File(it) &#125;.also&#123; it.mkdirs() &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><ul>
-<li>有自己的作用域</li>
-<li>作用域中的接收者 this</li>
-<li>返回值都是原来的对象</li>
-</ul>
-<p>apply 和also的区别相当于 let 和run 的区别。一个接收this ，另一个是接收it 。同样的情况，also 是用重新命名。apply则不行。是链式结构创建一个Intent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 普通创建Intent方法</span><br><span class="line">fun createIntent(intentData: String, intentAction: String): Intent &#123;</span><br><span class="line">    val intent = Intent()</span><br><span class="line">    intent.action = intentAction</span><br><span class="line">    intent.data=Uri.parse(intentData)</span><br><span class="line">    return intent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 通过apply函数的链式调用创建Intent</span><br><span class="line">fun createIntent(intentData: String, intentAction: String) =</span><br><span class="line">        Intent().apply &#123; action = intentAction &#125;</span><br><span class="line">                .apply &#123; data = Uri.parse(intentData) &#125;</span><br></pre></td></tr></table></figure>
-<p>使用于建造者模式，apply则更经常使用。或者对同一对象多次操作，则apply 显现的代码更加的简洁。返回的是对象本身</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return TextView(context).apply &#123;</span><br><span class="line">    text = &quot;test&quot;</span><br><span class="line">    setOnClickListener(onClickListener)</span><br><span class="line">    // 更多对TextView的操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p>与run的方法类似 ，with(T)函数，而另一个则是使用了T.run函数。<br>with是传参进行处理。对于没什么判断的操作的时候使用情况都差不多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">with(webView.settings)&#123;</span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.settings.run &#123; </span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>假设一种场景，那就是webView.settings可能为null。那我们就来再次看一下下面这段代码.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">with(webView.settings)&#123;</span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">webView.settings?.run &#123; </span><br><span class="line">    javaScriptEnabled = true</span><br><span class="line">    databaseEnabled = true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>很明显run方法更好，可以在函数使用之前进行判断</p>
-<h4 id="takeIf"><a href="#takeIf" class="headerlink" title="takeIf"></a>takeIf</h4><p>增加了判断，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">File(url).takeIf &#123; it.exists() &#125;</span><br><span class="line">        ?.let &#123;</span><br><span class="line">            JSONObject(NetworkUtils.postFile(SERVER_URL, url))</span><br><span class="line">        &#125;?.takeIf &#123; it.optString(&quot;message&quot;) == &quot;success&quot; &#125;</span><br><span class="line">        ?.let &#123;</span><br><span class="line">            post(it.optString(&quot;result&quot;))</span><br><span class="line">        &#125; ?: mHandler.post &#123; view?.onFail() &#125;</span><br></pre></td></tr></table></figure>
-<p>takeIf 操作最后对象为Boolean ,当值是false时，则返回null ,返回值为true 则返回自身</p>
-<p>在这里我们通过一个树状图来看一下对着五个标准函数的区别，使用以及如何选取标准函数</p>
-<p><img src="https://ww2.sinaimg.cn/large/006tKfTcly1fpeh8eb52wj31ee0kitb9.jpg" alt="enter image description here"></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/30/let run also with apply takeIf使用/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -675,8 +635,7 @@
 
       
         
-          
-            <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
+          <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
 <p>这意味着，所有在 Kotlin 中不加标注使用的 ArrayList 都是 kotlin.collections.ArrayList ，但这个类型并不真实存在，编译时会被转换为 java.util.ArrayList，通过 Java 代码调用 kotlin.collections.ArrayList 对象，会被自动转换为 java.util.ArrayList；而且所有 Java 中的 java.util.ArrayList 在 Kotlin 代码中都可以通过 kotlin.collections.ArrayList 调用。</p>
 <p>Kotlin 中使用 typealias 关键字定义类型映射，这里就定义了一个 kotlin.collections.ArrayList<e> 与 java.util.ArrayList<e> 的类型映射。</e></e></p>
 <p>Kotlin 原生支持大量操作符<br>Arrays.asList(array)  listof 底层</p>
@@ -696,93 +655,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// The element whose negative is greater</span><br><span class="line">assertEquals(1, list.maxBy &#123; -it &#125;)</span><br></pre></td></tr></table></figure>
 <p>min<br>返回最小的一项，如果没有则返回null。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(1, list.min())</span><br></pre></td></tr></table></figure>
-<p>minBy<br>根据给定的函数返回最小的一项，如果没有则返回null。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// The element whose negative is smaller</span><br><span class="line">assertEquals(6, list.minBy &#123; -it &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>none<br>如果没有任何元素与给定的函数匹配，则返回true。<br>/</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ No elements are divisible by 7</span><br><span class="line">assertTrue(list.none &#123; it % 7 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>reduce<br>与fold一样，但是没有一个初始值。通过一个函数从第一项到最后一项进行累计。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(21, list.reduce &#123; total, next -&gt; total + next &#125;)</span><br></pre></td></tr></table></figure>
-<p>reduceRight<br>与reduce一样，但是顺序是从最后一项到第一项。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(21, list.reduceRight &#123; total, next -&gt; total + next &#125;)</span><br></pre></td></tr></table></figure>
-<p>sumBy<br>返回所有每一项通过函数转换之后的数据的总和。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(3, list.sumBy &#123; it % 2 &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="过滤操作符"><a href="#过滤操作符" class="headerlink" title="过滤操作符"></a>过滤操作符</h4><p>drop<br>返回包含去掉前n个元素的所有元素的列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(5, 6), list.drop(4))</span><br></pre></td></tr></table></figure>
-<p>dropWhile<br>返回根据给定函数从第一项开始去掉指定元素的列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(3, 4, 5, 6), list.dropWhile &#123; it &lt; 3 &#125;)</span><br></pre></td></tr></table></figure>
-<p>dropLastWhile<br>返回根据给定函数从最后一项开始去掉指定元素的列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 2, 3, 4), list.dropLastWhile &#123; it &gt; 4 &#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>filter</strong><br>过滤所有符合给定函数条件的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 4, 6), list.filter &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>filterNot</strong><br>过滤所有不符合给定函数条件的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 3, 5), list.filterNot &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>filterNotNull</strong><br>过滤所有元素中不是null的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 2, 3, 4), listWithNull.filterNotNull())</span><br></pre></td></tr></table></figure>
-<p>slice<br>过滤一个list中指定index的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 4, 5), list.slice(listOf(1, 3, 4)))</span><br></pre></td></tr></table></figure>
-<p>take<br>返回从第一个开始的n个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 2), list.take(2))</span><br></pre></td></tr></table></figure>
-<p>takeLast<br>返回从最后一个开始的n个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(5, 6), list.takeLast(2))</span><br></pre></td></tr></table></figure>
-<p>takeWhile<br>返回从第一个开始符合给定函数条件的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 2), list.takeWhile &#123; it &lt; 3 &#125;)</span><br></pre></td></tr></table></figure>
-<p>####映射操作符<br>flatMap<br>遍历所有的元素，为每一个创建一个集合，最后把所有的集合放在一个集合中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7), </span><br><span class="line">list.flatMap &#123; listOf(it, it + 1) &#125;)</span><br></pre></td></tr></table></figure>
-<p>groupBy<br>返回一个根据给定函数分组后的map。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(mapOf(&quot;odd&quot; to listOf(1, 3, 5), &quot;even&quot; to listOf(2, 4, 6)), list.groupBy &#123; if (it % 2 == 0) &quot;even&quot; else &quot;odd&quot; &#125;)</span><br></pre></td></tr></table></figure>
-<p>map<br>返回一个每一个元素根据给定的函数转换所组成的List。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 4, 6, 8, 10, 12), list.map &#123; it * 2 &#125;)</span><br></pre></td></tr></table></figure>
-<p>mapIndexed<br>返回一个每一个元素根据给定的包含元素index的函数转换所组成的List。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf (0, 2, 6, 12, 20, 30), list.mapIndexed &#123; index, it -&gt; index * it &#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>mapNotNull</strong><br>返回一个每一个非null元素根据给定的函数转换所组成的List。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 4, 6, 8), listWithNull.mapNotNull &#123; it * 2 &#125;)</span><br></pre></td></tr></table></figure>
-<p>####元素操作符<br>contains<br>如果指定元素可以在集合中找到，则返回true。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertTrue(list.contains(2))</span><br></pre></td></tr></table></figure>
-<p>elementAt == get(index)<br>返回给定index对应的元素，如果index数组越界则会抛出IndexOutOfBoundsException。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(2, list.elementAt(1))</span><br></pre></td></tr></table></figure>
-<p>elementAtOrElse == getOrElse<br>返回给定index对应的元素，如果index数组越界则会根据给定函数返回默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(20, list.elementAtOrElse(10, &#123; 2 * it &#125;))</span><br></pre></td></tr></table></figure>
-<p>elementAtOrNull  == getOrElse<br>返回给定index对应的元素，如果index数组越界则会返回null。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertNull(list.elementAtOrNull(10))</span><br></pre></td></tr></table></figure>
-<p>first<br>返回符合给定函数条件的第一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(2, list.first &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>firstOrNull<br>返回符合给定函数条件的第一个元素，如果没有符合则返回null。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertNull(list.firstOrNull &#123; it % 7 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>indexOf<br>返回指定元素的第一个index，如果不存在，则返回-1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(3, list.indexOf(4))</span><br></pre></td></tr></table></figure>
-<p>indexOfFirst<br>返回第一个符合给定函数条件的元素的index，如果没有符合则返回-1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(1, list.indexOfFirst &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>indexOfLast<br>返回最后一个符合给定函数条件的元素的index，如果没有符合则返回-1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(5, list.indexOfLast &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>last<br>返回符合给定函数条件的最后一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(6, list.last &#123; it % 2 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>lastIndexOf<br>返回指定元素的最后一个index，如果不存在，则返回-1。<br>lastOrNull<br>返回符合给定函数条件的最后一个元素，如果没有符合则返回null。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val list = listOf(1, 2, 3, 4, 5, 6)</span><br><span class="line">assertNull(list.lastOrNull &#123; it % 7 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>single<br>返回符合给定函数的单个元素，如果没有符合或者超过一个，则抛出异常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(5, list.single &#123; it % 5 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>singleOrNull<br>返回符合给定函数的单个元素，如果没有符合或者超过一个，则返回null。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertNull(list.singleOrNull &#123; it % 7 == 0 &#125;)</span><br></pre></td></tr></table></figure>
-<p>####生产操作符<br>merge<br>把两个集合合并成一个新的，相同index的元素通过给定的函数进行合并成新的元素作为新的集合的一个元素，返回这个新的集合。新的集合的大小由最小的那个集合大小决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val list = listOf(1, 2, 3, 4, 5, 6)</span><br><span class="line">val listRepeated = listOf(2, 2, 3, 4, 5, 5, 6)</span><br><span class="line">assertEquals(listOf(3, 4, 6, 8, 10, 11), list.merge(listRepeated) &#123; it1, it2 -&gt; it1 + it2 &#125;)</span><br></pre></td></tr></table></figure>
-<p>partition<br>把一个给定的集合分割成两个，第一个集合是由原集合每一项元素匹配给定函数条件返回true的元素组成，第二个集合是由原集合每一项元素匹配给定函数条件返回false的元素组成。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(`enter code here`</span><br><span class="line">    Pair(listOf(2, 4, 6), listOf(1, 3, 5)), </span><br><span class="line">    list.partition &#123; it % 2 == 0 &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>plus<br>返回一个包含原集合和给定集合中所有元素的集合，因为函数的名字原因，我们可以使用+操作符。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(</span><br><span class="line">    listOf(1, 2, 3, 4, 5, 6, 7, 8), </span><br><span class="line">    list + listOf(7, 8)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>zip<br>返回由pair组成的List，每个pair由两个集合中相同index的元素组成。这个返回的List的大小由最小的那个集合决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(</span><br><span class="line">    listOf(Pair(1, 7), Pair(2, 8)), </span><br><span class="line">    list.zip(listOf(7, 8))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>unzip<br>从包含pair的List中生成包含List的Pair。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(</span><br><span class="line">    Pair(listOf(5, 6), listOf(7, 8)), </span><br><span class="line">    listOf(Pair(5, 7), Pair(6, 8)).unzip()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>####顺序操作符<br>reverse<br>返回一个与指定list相反顺序的list。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val unsortedList = listOf(3, 2, 7, 5)</span><br><span class="line">assertEquals(listOf(5, 7, 2, 3), unsortedList.reverse())</span><br></pre></td></tr></table></figure>
-<p>sort<br>返回一个自然排序后的list。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 3, 5, 7), unsortedList.sort())</span><br></pre></td></tr></table></figure>
-<p>sortBy<br>返回一个根据指定函数排序后的list。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(3, 7, 2, 5), unsortedList.sortBy &#123; it % 3 &#125;)</span><br></pre></td></tr></table></figure>
-<p>sortDescending<br>返回一个降序排序后的List。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(7, 5, 3, 2), unsortedList.sortDescending())</span><br><span class="line">sortDescendingBy</span><br></pre></td></tr></table></figure>
-<p>返回一个根据指定函数降序排序后的list。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(listOf(2, 5, 7, 3), unsortedList.sortDescendingBy &#123; it % 3 &#125;)</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/30/总数操作/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -921,8 +800,7 @@
 
       
         
-          
-            <h1 id="MVP-architecture翻译"><a href="#MVP-architecture翻译" class="headerlink" title="MVP- architecture翻译"></a>MVP- architecture翻译</h1><blockquote>
+          <h1 id="MVP-architecture翻译"><a href="#MVP-architecture翻译" class="headerlink" title="MVP- architecture翻译"></a>MVP- architecture翻译</h1><blockquote>
 <p>原文地址 ：<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/" target="_blank" rel="noopener">https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/</a><br>翻译 ： leo</p>
 </blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MVP clean architecture 是基于<a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="noopener">Clean Architecture.</a>的准则的观点</p>
@@ -933,17 +811,13 @@
 <li><strong>Domain </strong>: 处理所有的业务逻辑，<strong>注意是所有的业务逻辑</strong>。domain层是以presentation layer 层的use cases 或者 interactors 开始的。</li>
 <li><strong>Repository</strong>: 获取数据，以及数据的存储</li>
 </ul>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>mvp-clean 和 基本的mvp 最大的区别就是在domain层和use cases 的使用上。从 presenters 层分离出domain 层好处是可以减少代码的冗余（例<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/filter" target="_blank" rel="noopener">Task filters</a>.<br><strong>Use case</strong> 定义了 app 所需的操作。这增加了 可阅读性，因为类的名称使目的更加的明显。（例<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/usecase" target="_blank" rel="noopener">tasks/domain/usecase/</a>）</p>
-<p><strong>Use case</strong> 的好处是在domain的代码层上可以复用。<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/domain/usecase/CompleteTask.java" target="_blank" rel="noopener">CompleteTask</a>在<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/taskdetail/TaskDetailPresenter.java" target="_blank" rel="noopener">TaskDetailPresenter</a>和<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-clean/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksPresenter.java" target="_blank" rel="noopener">TasksPresenter</a>做到了很好的复用。<br>use cases 是使用<a href="http://www.oodesign.com/command-pattern.html" target="_blank" rel="noopener">command pattern</a>在后台完成操作的。domain layer 是完全解耦与Android 层和第三方依赖的。是一个纯java层的处理</p>
-<h2 id="Issues-notes"><a href="#Issues-notes" class="headerlink" title="Issues/notes"></a>Issues/notes</h2><p><strong>Use cases</strong> 从主线程剥离出来，对于Android app是个好的操作。这种操作是尽可能的减少占用UI 线程。我们决定使用 command pattern 将use case 在线程池里执行操作。同样的我们可以用RxJava 或者 Promises实现同样的功能。</p>
-<p>我们使用异步的repositories 。 但是现在没有必要这么做了。因为use case 已经从主线程里剥离出来了。这是尽量保持 samples 和原来的是一致的。</p>
-<p>我们建议为 View,domain 和 APi layers 建立不同的 models 。 但是在这种情况下所有的models 是不可以改变的，因此没有去复制他们。如果一个 View models 包含了和Android 相关的代码。我们需要用两个 models 。一个用于 domain 。一个用于View和一个对应的class 能够在他们之间转换 。</p>
-<p>Callbacks 的onError方法在 app 上需要包含具体的错误信息。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>通过这样的接口，所有的 domain 代码都可以用于单元测试 。 这个也可以结合整体测试。这个包括所使用的 Use Cases 对应的 view  和 repository.</p>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><hr>
-<h3 id="复杂的事情简单化"><a href="#复杂的事情简单化" class="headerlink" title="复杂的事情简单化"></a>复杂的事情简单化</h3><p>很简单，虽然代码比之前会多点，但是维护任务也更加的简单</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/MVP- architecture翻译/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1082,8 +956,7 @@
 
       
         
-          
-            <h4 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h4><p>基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。</p>
+          <h4 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h4><p>基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。</p>
 <h4 id="基础类的构建"><a href="#基础类的构建" class="headerlink" title="基础类的构建"></a>基础类的构建</h4><ol>
 <li>基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标</li>
 <li>选中车型的类，保存选中车型的数据状态</li>
@@ -1102,16 +975,13 @@
 <li>车型展示的圆圈大小进行分级。便于显示管理处置。 对所有的圆的类型根据等级分成9级，按照2的倍数，排序圆圈</li>
 </ol>
 <h4 id="代码构建"><a href="#代码构建" class="headerlink" title="代码构建"></a>代码构建</h4><p><img src="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788" alt="d8f64ebb0799e21afcf2e6b128463509.png"><br>代码的分层框架</p>
-<h5 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h5><p>因为魔图有三个状态，需要创建三个不同的对象去承载这些业务逻辑。初始化即Normal 状态 ，点击状态Touch ,还有竞争状态 Compare。这三个状态多具有相同的一些属性，但是也都有不同的部分。所以通过继承相同的基类，在不同的子类修改了部分属性从而使得它们可以呈现不同的状态。即用一个接口BaseCase对于这一类的Case归类，打上标签与其他的进行区分。然后根据传进来的type 进行区分。主要的方法是onDraw() 和onTouch() 。我们又希望在使用这些对象，不需要知道这些对象具体的名字，只需要知道表示该对象的一个参数，就可以获取该对象。所以这里就采用工厂模式进行重构。</p>
-<pre><code>1. 将关注点进行分离,对责任进行分割，调用者无需知道类名 。提高系统的灵活性，对于后期代码的增删也比较的方便。
-2. 统一的基类进行约束，实现多态。协议类，统一管理回调
-</code></pre><h4 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h4><ol>
-<li>完全超出屏幕外部的圆不进行绘制，尤其在绘制对比类型的时候，连接线是虚线的状态。会造成严重的卡顿。绘制虚线需要关闭android 的硬件加速的功能。而且当初画布会放的非常大，就会造成各个方向的连线特别的长。因此对于超出屏幕外部的不进行绘制是极有必要的。</li>
-<li>不在循环绘制的过程里创建新的对象，否则对象不断的创建，不断的释放，会造成内存极大的抖动</li>
-<li>数据转换过程。在绘制前先处理好。</li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/30/产品介绍/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

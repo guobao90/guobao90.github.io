@@ -88,7 +88,7 @@
 <meta property="og:description" content="产品介绍基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。 基础类的构建 基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标 选中车型的类，保存选中车型的数据状态 数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据  事件处理类 点击事件，">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788">
-<meta property="og:updated_time" content="2019-01-01T05:39:41.000Z">
+<meta property="og:updated_time" content="2019-01-02T16:00:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="魔图的产品介绍">
 <meta name="twitter:description" content="产品介绍基于千万车轮车主用户大数据分析综合评分，用户打分形成的最终推荐指数。竖轴表示推荐指数，横轴表示价格区间。通过展示的图形筛选出自己心仪的车型。展示各个车型的各项评分，车型以及竞品的对比关系。 基础类的构建 基础的画布类，定义画布的基础参数。主要就是画布的四个边界点的坐标 选中车型的类，保存选中车型的数据状态 数据处理类，将魔图的真实数据，转换成在画布上可以使用的数据  事件处理类 点击事件，">
@@ -343,6 +343,7 @@
 <li>车型展示的圆圈大小进行分级。便于显示管理处置。 对所有的圆的类型根据等级分成9级，按照2的倍数，排序圆圈</li>
 </ol>
 <h4 id="代码构建"><a href="#代码构建" class="headerlink" title="代码构建"></a>代码构建</h4><p><img src="evernotecid://FACBD128-7579-4D44-88C6-00C546DEF615/appyinxiangcom/13346904/ENResource/p15788" alt="d8f64ebb0799e21afcf2e6b128463509.png"><br>代码的分层框架</p>
+<a id="more"></a>
 <h5 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h5><p>因为魔图有三个状态，需要创建三个不同的对象去承载这些业务逻辑。初始化即Normal 状态 ，点击状态Touch ,还有竞争状态 Compare。这三个状态多具有相同的一些属性，但是也都有不同的部分。所以通过继承相同的基类，在不同的子类修改了部分属性从而使得它们可以呈现不同的状态。即用一个接口BaseCase对于这一类的Case归类，打上标签与其他的进行区分。然后根据传进来的type 进行区分。主要的方法是onDraw() 和onTouch() 。我们又希望在使用这些对象，不需要知道这些对象具体的名字，只需要知道表示该对象的一个参数，就可以获取该对象。所以这里就采用工厂模式进行重构。</p>
 <pre><code>1. 将关注点进行分离,对责任进行分割，调用者无需知道类名 。提高系统的灵活性，对于后期代码的增删也比较的方便。
 2. 统一的基类进行约束，实现多态。协议类，统一管理回调
