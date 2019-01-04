@@ -229,6 +229,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/help/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guobao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/30/help/" itemprop="url">Debug tools overview</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-30T20:03:00+08:00">
+                2018-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Debug/" itemprop="url" rel="index">
+                    <span itemprop="name">Debug</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p align="center"><br><br><a href="https://bintray.com/leo90/maven/debug" target="_blank" rel="noopener">ma<br>        <image alt="Version" src="https://img.shields.io/badge/maven%20central-1.0.1-green.svg"><br>    </image></a><br></p>
+
+
+<blockquote>
+<p><strong><a href="https://zhipingyang.github.io/XYDebugView" target="_blank" rel="noopener">XMDebug</a></strong> is a debug tool to help developer </p>
+</blockquote>
+<h2 id="1-ScreenShot"><a href="#1-ScreenShot" class="headerlink" title="1.ScreenShot"></a>1.ScreenShot</h2><p><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/29169069.jpg" alt=""><br><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/50439004.jpg" alt=""></p>
+<h2 id="2-Download"><a href="#2-Download" class="headerlink" title="2.Download"></a>2.Download</h2><hr>
+<p>You can download from GitHub’s [releases page].</p>
+<p>Or use Gradle:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repositories</span> &#123;</span><br><span class="line">  mavenCentral()</span><br><span class="line">  google()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">  implementation <span class="string">'com.leo:debug:1.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-How-do-I-Use"><a href="#3-How-do-I-Use" class="headerlink" title="3.How do I Use"></a>3.How do I Use</h2><h3 id="3-1-App-Info"><a href="#3-1-App-Info" class="headerlink" title="3.1 App Info"></a>3.1 App Info</h3><p>You can see Activities, Services , Receivers ,Providers,Permissions colletions . Some Detail of your App like ,verson ,version code . </p>
+<p>In Activities your can see All Activity . Press the item your can jump to the corresponding Activity . </p>
+<h4 id="3-1-1-Activities"><a href="#3-1-1-Activities" class="headerlink" title="3.1.1 Activities"></a>3.1.1 Activities</h4><p><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/67457828.jpg" alt=""></p>
+<h4 id="3-1-2-Permissions-See-the-detail-of-Permissions"><a href="#3-1-2-Permissions-See-the-detail-of-Permissions" class="headerlink" title="3.1.2 Permissions .See the detail of Permissions"></a>3.1.2 Permissions .See the detail of Permissions</h4><p><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/75480764.jpg" alt=""></p>
+<h3 id="3-2-Exception-Reports"><a href="#3-2-Exception-Reports" class="headerlink" title="3.2 Exception Reports"></a>3.2 Exception Reports</h3><p>You can see the bugs reports with the detail of code and the screenshot of the exception happen<br><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/46712449.jpg" alt=""></p>
+<h3 id="3-3-Local-Data"><a href="#3-3-Local-Data" class="headerlink" title="3.3 Local Data"></a>3.3 Local Data</h3><p>Detail of SharedPreference ,Sqlite, local Cache. You can also clean the data through this debug tools<br><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/49438500.jpg" alt=""></p>
+<h3 id="3-4-Toast-Activity-Name"><a href="#3-4-Toast-Activity-Name" class="headerlink" title="3.4 Toast Activity Name"></a>3.4 Toast Activity Name</h3><p>Switch On Show Activity Name ,You can see the toast of Activity of .<br><img src="http://pktfce9ot.bkt.clouddn.com/19-1-5/60090897.jpg" alt=""></p>
+<h2 id="4-Start"><a href="#4-Start" class="headerlink" title="4.Start"></a>4.Start</h2><h3 id="4-1-First-…-emm-you-should-implementation-the-library"><a href="#4-1-First-…-emm-you-should-implementation-the-library" class="headerlink" title="4.1 First … emm ,you should implementation the library"></a>4.1 First … emm ,you should implementation the library</h3><h3 id="4-2-In-your-custom-application-put-the-code-below"><a href="#4-2-In-your-custom-application-put-the-code-below" class="headerlink" title="4.2 In your custom application ,put the code below"></a>4.2 In your custom application ,put the code below</h3><pre><code> override fun onCreate() {
+    super.onCreate()
+    DebugCrashHandler.setCrashHandler(this)
+}
+
+these code use to capture the exceptions
+</code></pre><h3 id="4-3-put-the-DebugHomeActivity-entrance-in-somewhere-nobody-know"><a href="#4-3-put-the-DebugHomeActivity-entrance-in-somewhere-nobody-know" class="headerlink" title="4.3 put the DebugHomeActivity entrance in somewhere nobody know"></a>4.3 put the DebugHomeActivity entrance in somewhere nobody know</h3><h2 id="GitPage"><a href="#GitPage" class="headerlink" title="GitPage"></a>GitPage</h2><p><a href="https://zhipingyang.github.io/XYDebugView" target="_blank" rel="noopener">https://zhipingyang.github.io/XYDebugView</a></p>
+<h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><p>XcodeYang, <a href="mailto:xcodeyang@gmail.com" target="_blank" rel="noopener">xcodeyang@gmail.com</a></p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>XYDebugView is available under the MIT license. See the LICENSE file for more info.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/let run also with apply takeIf使用/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1061,7 +1229,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1072,7 +1240,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
